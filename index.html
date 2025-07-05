@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Heyyy</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Rubik:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.95); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes floatUp {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Rubik', sans-serif;
+      background: url('https://i.imgur.com/Ezzf02b.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .window {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      width: 70%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      padding: 30px;
+      text-align: center;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .window.active {
+      display: flex;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .button-group button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #66b3ff;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    .button-group button:hover {
+      background-color: #3399ff;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: left;
+      font-family: 'Rubik', sans-serif;
+    }
+
+    li {
+      margin: 10px 0;
+    }
+
+    #window1 h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: floatUp 1s ease-out forwards;
+    }
+
+    #window1 p {
+      font-family: 'Rubik', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 500;
+      opacity: 0;
+      animation: fadeIn 1s ease forwards;
+      animation-delay: 1s;
+      animation-fill-mode: forwards;
+    }
+
+    #angryFace {
+      display: none;
+      font-size: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="window active" id="window1">
+    <h2>Heyyy</h2>
+    <p>Hi, I don't want to pile on but hear me out bro:</p>
+    <div class="button-group">
+      <button onclick="nextWindow()">Okay</button>
+    </div>
+  </div>
+
+  <div class="window" id="window2">
+    <p>After countless hours of meticulous thinking and careful consideration, I have found reasons why you should come to prom with me:</p>
+    <ul>
+      <li>1) I think you are cute</li>
+      <li>2) I think you're funny (in an unconventional way tbh)</li>
+      <li>3) I think you want to come with me</li>
+      <li>4) I think I just love you</li>
+      <li>5) I think you love me too</li>
+      <li>6) I think you can't dance so you need someone who can't dance as well</li>
+    </ul>
+    <button onclick="nextWindow()">Tell me more about it</button>
+  </div>
+
+  <div class="window" id="window3">
+    <p>You will also experience a magical experience because:</p>
+    <ul>
+      <li>1) You will have me as your date</li>
+      <li>2) Ar ki chai tomar</li>
+    </ul>
+    <div class="button-group">
+      <button onclick="nextWindow()">True</button>
+      <button onclick="showAngry()">False</button>
+    </div>
+    <div id="angryFace">😠</div>
+  </div>
+
+  <div class="window" id="window4">
+    <h2>So, Will you, Rudro Raihan Rono, come to prom with me?</h2>
+    <div class="button-group">
+      <button onclick="showConfetti()">Yes</button>
+      <button onclick="showConfetti()">Yes</button>
+    </div>
+  </div>
+
+  <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none;"></canvas>
+
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <script>
+    let current = 1;
+    function nextWindow() {
+      document.getElementById(`window${current}`).classList.remove('active');
+      current++;
+      document.getElementById(`window${current}`).classList.add('active');
+    }
+
+    function showAngry() {
+      document.getElementById('angryFace').style.display = 'block';
+    }
+
+    function showConfetti() {
+      confetti({
+        particleCount: 200,
+        spread: 100,
+        origin: { y: 0.6 },
+      });
+    }
+  </script>
+</body>
+</html>
